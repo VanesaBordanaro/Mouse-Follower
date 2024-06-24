@@ -26,10 +26,19 @@ function App() {
       document.body.classList.remove('no-cursor')
     }
     })
+
+    useEffect(() => {
+      if(!enabled) {
+        setPosition({x: 0, y: 0})
+      }
+    }, [enabled])
+
+
   return (
     <>
       <main>
-        <div style={{
+        {enabled && (
+          <div style={{
           position: 'absolute',
           backgroundColor:'rgba(0,0,0,0.5)',
           border: '1px solid #fff',
@@ -43,6 +52,7 @@ function App() {
           transform: `translate(${position.x}px, ${position.y}px)`
         }}>
         </div>
+        )}
 
         <button onClick={() => setUnabled(!enabled)}>{enabled ? 'Desactivar' : 'Activar'} seguir puntero</button>
       </main>
